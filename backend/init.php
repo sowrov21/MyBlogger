@@ -1,12 +1,17 @@
 <?PHP
-require_once 'classes/Database.php';
+    //require_once 'classes/Database.php';
 
+    spl_autoload_register( function($class_name){
+
+        require_once "classes/".$class_name.".php"; 
+
+    });
 //Define conatant
- define("DB_HOST","localhost");
- define("DB_NAME","blogger");
- define("DB_USER_NAME","root");
- define("DB_PASS","");
- define("BASE_URL","http://localhost/MyBlogger/");
+    define("DB_HOST","localhost");
+    define("DB_NAME","blogger");
+    define("DB_USER_NAME","root");
+    define("DB_PASS","");
+    define("BASE_URL","http://localhost/MyBlogger/");
 /*
  //creating object or instance of Database Class
 
