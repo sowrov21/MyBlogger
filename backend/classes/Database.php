@@ -26,7 +26,7 @@ class Database {
 
         if(self::$instance === null){
 
-            self::$instance = new Database(); // same as self::$instance = new Database();
+            self::$instance = new self; // same as self::$instance = new Database();
         }
         return  self::$instance;
 
