@@ -1,3 +1,36 @@
+<?php 
+
+    include_once './backend/init.php';
+
+    if($_SERVER['REQUEST_METHOD']=='POST'){
+
+        $email    = Validate ::escape($_POST['email']);
+        $password = $_POST['password'];
+
+        if(isset($_POST['login'])){
+
+            if(!empty($email) && !empty($password))
+            {
+
+                if(Validate ::filterEmail($_POST['email'])){
+                    //Check email exist in db or not
+                }else{
+
+                    $error = "*Please enter valid email address";
+                }
+
+            }else{
+
+                $error = "*Please enter both email and password";
+            }
+        }
+
+    }
+
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +66,14 @@
 							<span class="in-span">
 								<i class="fas fa-lock"></i>
 							</span>
-							<div>Here will be error</div>
+							<div>
+                                <?php 
+                                
+                                 if(isset($error)){
+                                     echo $error;
+                                 }
+                                ?>
+                            </div>
 						</div>
 					</div>
 				</div>
