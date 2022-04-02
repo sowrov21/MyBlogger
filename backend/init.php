@@ -33,3 +33,6 @@
 
  $i = new init();
 */
+
+$userObj = new Users;
+

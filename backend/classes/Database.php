@@ -14,8 +14,8 @@ class Database {
     *to access a property belonging to the object of the class.
     */
 
-    public  $pdo;
-    public static $instance;
+    protected  $pdo;
+    protected static $instance;
 
    public function __construct(){
 
@@ -24,7 +24,7 @@ class Database {
 
    public static function instance(){   // This method will store the instance of the class into this instance variable so that we can get the values without creating the class object from the class
 
-        if(self::$instance === null){
+        if(self::$instance == null){
 
             self::$instance = new self; // same as self::$instance = new Database();
         }
@@ -34,12 +34,12 @@ class Database {
    public function __call($name, $arguments) // __call() fuction will check wheather any undefined function is callled or not ? and return that undefined function name and arguments Every functio start with double undrscore is known as Magic Function.
    {
        //var_dump($name);
-       var_dump($arguments);
-       //return call_user_func_array(array($this->pdo,$method_name),$arguments);
+       //var_dump($arguments);
+       return call_user_func_array(array($this->pdo,$name),$arguments);
    }
 
 
-
+ 
 
 }
 

@@ -1,6 +1,11 @@
 <?php 
+    include_once 'backend/init.php';
 
-    include_once './backend/init.php';
+	if($userObj->isLogged()){
+		header('Location: frontend/dashboard.php');
+	}else{
+		//header('Location: login.php');
+	}
 
     if($_SERVER['REQUEST_METHOD']=='POST'){
 
@@ -14,6 +19,22 @@
 
                 if(Validate ::filterEmail($_POST['email'])){
                     //Check email exist in db or not
+                    if($user = $userObj->checkExistingEmail($email)){
+						$hash = $user->password;
+						if(password_verify($password,$hash)){
+
+							$_SESSION['	user_id'] = $user->id;
+							header('Location: frontend/dashboard.php');
+						}else{
+							
+							$error = "*Your email or password incorrect !";
+						}
+	
+					}else{
+
+						$error = "*This email is not registered";
+					}
+                  
                 }else{
 
                     $error = "*Please enter valid email address";
