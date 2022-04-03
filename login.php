@@ -75,7 +75,7 @@
 	 			<div class="sign-body">
 	  				<div>
 						<div class="in-div">
-							<input class="in-fo" type="email" name="email" placeholder="Email here" autocomplete="off">
+							<input class="in-fo" type="email" name="email" placeholder="Email here"  value="<?=$_POST['email']??'';?>" autocomplete="off">
 							<span class="in-span">
 								<i class="fas fa-envelope"></i>
 							</span>
@@ -86,8 +86,8 @@
 							<input class="in-fo" type="password" name="password" placeholder="Password" autocomplete="off">
 							<span class="in-span">
 								<i class="fas fa-lock"></i>
-							</span>
-							<div>
+							</span >
+							<div style="font-size:18px;">
                                 <?php 
                                 
                                  if(isset($error)){
