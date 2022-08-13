@@ -1,12 +1,12 @@
 <?php 
     include_once 'backend/init.php';
-
+    //echo $userObj->hash('111');
 	if($userObj->isLogged()){
 		header('Location: frontend/dashboard.php');
 	}else{
 		//header('Location: login.php');
 	}
-
+   
     if($_SERVER['REQUEST_METHOD']=='POST'){
 
         $email    = Validate ::escape($_POST['email']);

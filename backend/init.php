@@ -35,4 +35,5 @@
 */
 
 $userObj = new Users;
+$dashObj = new Dashboard;
 

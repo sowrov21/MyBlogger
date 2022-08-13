@@ -2,7 +2,19 @@
     include_once '../backend/init.php';
 
     $user = $userObj->userData();
+    $blogs = $userObj->get('blogs',['blogID'=>1]);
+    
+	if(isset($_GET['blogID'])  && !empty($_GET['blogID'])){
+		$blogID = (int)$_GET['blogID'];
+		//echo $blogID;
+		$blogs = $dashObj->blogAuth($blogID);
 
+		echo $blogs->Title;
+
+		if(!$blogs){
+			header(('Location:404'));
+		}
+	}
 ?>
 
 <!DOCTYPE HTML>

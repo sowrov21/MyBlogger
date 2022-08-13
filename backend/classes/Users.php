@@ -1,4 +1,5 @@
 <?php
+
 class Users{
 
     public $db;
@@ -38,6 +39,32 @@ class Users{
       $statement->bindParam(":id", $user_id, PDO::PARAM_INT);
       $statement->execute();
       return $statement->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function get( $table, $fields = array()){
+
+      $where = "WHERE";
+      //sql query
+
+      $sql = "SELECT * FROM `{$table}`";
+
+      foreach($fields as $key => $value){
+        $sql .= " {$where} `{$key}` = :{$key} ";
+      }
+
+      if( $statement = $this->db->prepare($sql)){
+
+        foreach($fields as $key => $value){
+          $statement->bindValue(":{$key}",$value);
+        }
+        $statement->execute();
+
+        return $statement->fetch(PDO::FETCH_OBJ);
+      }
+
+
+
+
     }
 
 }
