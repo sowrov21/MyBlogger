@@ -1,2 +1,0 @@
-Stylesheets
-Html form etc.

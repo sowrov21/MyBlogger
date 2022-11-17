@@ -1,2 +1,29 @@
 RewriteEngine on
 RewriteRule ^admin/blogID/([0-9]+)/dashboard/?$ frontend/dashboard.php?blogID=$1
+RewriteRule ^admin/blogID/([0-9]+)/dashboard/pages/?$ frontend/pages.php?blogID=$1
+RewriteRule ^admin/blogID/([0-9]+)/dashboard/comments/?$ frontend/comments.php?blogID=$1
+RewriteRule ^admin/blogID/([0-9]+)/dashboard/pending/comments/?$ frontend/pending-comments.php?blogID=$1
+RewriteRule ^admin/blogID/([0-9]+)/dashboard/settings/?$ frontend/settings.php?blogID=$1
+RewriteRule ^admin/blogID/([0-9]+)/dashboard/layout/?$ frontend/layout.php?blogID=$1
+RewriteRule ^admin/blogID/([0-9]+)/template/edit/?$ frontend/edit-template.php?blogID=$1
+RewriteRule ^admin/blogID/([0-9]+)/dashboard/stats/?$ frontend/stats.php?blogID=$1
+
+ 
+RewriteRule ^admin/blogID/([0-9]+)/post/new/?$ frontend/new-post.php?blogID=$1
+RewriteRule ^admin/blogID/([0-9]+)/page/new/?$ frontend/new-page.php?blogID=$1
+RewriteRule ^admin/blogID/([0-9]+)/post/([0-9]+)/edit/?$ frontend/edit-post.php?blogID=$1&postID=$2
+RewriteRule ^admin/blogID/([0-9]+)/page/([0-9]+)/edit/?$ frontend/edit-page.php?blogID=$1&postID=$2
+
+RewriteRule ^blogID/([0-9]+)/gadgets/([\w]+)/([0-9]+)/?$ frontend/add-gadgets.php?blogID=$1&area=$2&pos=$3 
+RewriteRule ^blogID/([0-9]+)/gadgets/add/([\w]+)/([\w]+)/([0-9]+)/?$ frontend/add-gadgets.php?blogID=$1&type=$2&area=$3&pos=$4 
+RewriteRule ^blogID/([0-9]+)/gadgets/edit/([\w]+)/([\w]+)/([0-9]+)/?$ frontend/edit-gadgets.php?blogID=$1&type=$2&area=$3&pos=$4 
+
+ 
+RewriteRule ^404/?$ frontend/404.php 
+RewriteRule ^search/label/([\w]+)/?$ frontend/post.php?label=$1
+RewriteRule ^search/([\w]+)/?$ frontend/post.php?search=$1
+
+
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteRule ([^/]+)/?$ frontend/post.php?slug=$1

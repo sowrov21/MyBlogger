@@ -1,39 +1,26 @@
-<?PHP
-    //require_once 'classes/Database.php';
-    session_start();
-    spl_autoload_register( function($class_name){
+<?php
 
-        require_once "classes/".$class_name.".php"; 
+	session_start();
 
-    });
-//Define conatant
-    define("DB_HOST","localhost");
-    define("DB_NAME","blogger");
-    define("DB_USER_NAME","root");
-    define("DB_PASS","");
-    define("BASE_URL","http://localhost/MyBlogger/");
-/*
- //creating object or instance of Database Class
-
- //$db = new Database();
- //echo $db->public;
- //$db->private;
- //$db->protected;
-
- class init extends Database{
-
-    function __construct()
-    {
-        $db = new Database();
-
-        echo $db->protected;
-    }
+	spl_autoload_register(function($class){
+		require 'classes/'.$class.'.php';
+	});
   
- }
+	define("DB_HOST", "localhost");
+	define("DB_NAME", "blogger");
+	define("DB_USER", "root");
+	define("DB_PASS", "");
 
- $i = new init();
-*/
-
-$userObj = new Users;
-$dashObj = new Dashboard;
-
+	
+	$userObj       = new Users;
+	$dashObj       = new Dashboard;
+	$blogObj       = new Blog;
+	$layoutObj     = new Layout;
+	$templateObj   = new Template;
+	$statsObj      = new Stats;
+   
+	if($blog = $blogObj->getBlog()){
+		define("BASE_URL", "http://{$blog->Domain}.localhost/MyBlogger/");
+	}else{
+		define("BASE_URL", "http://localhost/MyBlogger/");
+	}
